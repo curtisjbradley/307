@@ -6,6 +6,7 @@ function MyApp() {
         <div>
             <h1>Hello, React!</h1>
             <Table />
+
         </div>
     );
 }
