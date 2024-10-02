@@ -1,11 +1,31 @@
 import React from 'react';
 import Table from './Table';
 
+
+const characters = [
+    {
+        name: "Charlie",
+        job: "Janitor"
+    },
+    {
+        name: "Mac",
+        job: "Bouncer"
+    },
+    {
+        name: "Dee",
+        job: "Aspiring actress"
+    },
+    {
+        name: "Dennis",
+        job: "Bartender"
+    }
+];
+
 function MyApp() {
     return (
-        <div>
+        <div className="container">
             <h1>Hello, React!</h1>
-            <Table />
+            <Table characterData={characters} />
 
         </div>
     );
