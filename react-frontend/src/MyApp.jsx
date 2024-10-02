@@ -12,13 +12,16 @@ function MyApp() {
         console.log(index);
     }
 
+    function updateList(person) {
+        setCharacters([...characters,person]);
+    }
+
     return (
         <div className="container">
             <h1>Hello, React!</h1>
             <Table characterData={characters}
             removeCharacter={removeOneCharacter} />
-            <Form />
-
+            <Form handleSubmit={updateList} />
         </div>
     );
 }
