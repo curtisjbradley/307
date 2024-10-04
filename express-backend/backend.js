@@ -56,7 +56,21 @@ const findUserByName = (name) => {
         (user) => user["name"] === name
     );
 };
+const findUserByID = (id) => {
+    return users["users_list"].find(
+        (user) => user["id"] === id
+    );
+}
 
+app.get("/users/:id", (req, res) => {
+    const id = req.params["id"];
+    let result = findUserByID(id);
+    if (result === undefined) {
+        res.status(404).send("User not found!");
+    } else {
+        res.send(result);
+    }
+})
 
 app.listen(port, () => {
     console.log(
