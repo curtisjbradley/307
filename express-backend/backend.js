@@ -83,6 +83,13 @@ app.post("/users", (req, res) => {
     res.send("Added");
 })
 
+app.delete("/users/:id", (req, res) => {
+    const id = req.params["id"];
+    let index = users["users_list"].findIndex(user => user["id"] === id);
+    users["users_list"].splice(index, 1);
+    res.send("Deleted");
+})
+
 app.listen(port, () => {
     console.log(
         `Example app listening at http://localhost:${port}`
