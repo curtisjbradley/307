@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/curtisjbradley/307Lab1#readme",
   "workspaces": [
-	  "packages/*"
+    "packages/*",
+    "react-frontend/",
+    "express-backend"
   ]
 }
