@@ -21,7 +21,9 @@ function MyApp() {
     }
 
     function updateList(person) {
-        setCharacters([...characters, person]);
+        postUser(person).then(() => {
+            setCharacters([...characters, person]);
+        }).catch((err) => console.log(err))
     }
 
     return (
@@ -38,8 +40,20 @@ function MyApp() {
 
     async function fetchUsers() {
         const promise = await fetch("http://localhost:8000/users")
-        console.log(promise)
         return promise
+    }
+
+    async function postUser(person) {
+        const promise = await fetch("http://localhost:8000/users", {
+            method: "POST",
+            body: JSON.stringify(person),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+
+        return promise
+
     }
 
 
