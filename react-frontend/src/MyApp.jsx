@@ -58,7 +58,7 @@ function MyApp() {
         return promise
     }
     async function deleteUser(person) {
-        const promise = await fetch("http://localhost:8000/users", {
+        const promise = await fetch("http://localhost:8000/users/" + person["id"], {
             method: "DELETE",
             body: JSON.stringify(person),
             headers: {

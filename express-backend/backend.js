@@ -85,6 +85,7 @@ app.get("/users/:id", (req, res) => {
 })
 
 const addUser = (user) => {
+    user['id'] = crypto.randomUUID()
     users["users_list"].push(user);
     return user;
 }
