@@ -35,7 +35,7 @@ function MyApp() {
 
     return (
         <div className="container">
-            <h1>Hello, React!</h1>
+            <h1>Users</h1>
             <Table characterData={characters}
                    removeCharacter={removeOneCharacter}/>
             <Form handleSubmit={updateList}/>
