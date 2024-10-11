@@ -15,14 +15,17 @@ function MyApp() {
     }, []);
 
     function removeOneCharacter(index) {
-        const updated = characters.filter((c, i) => i !== index);
-        setCharacters(updated);
-        console.log(index);
+        deleteUser(characters[index]).then(() => {
+            const updated = characters.filter((c, i) => i !== index);
+            setCharacters(updated);
+        }).catch((err)=> console.log(err));
+
     }
 
     function updateList(person) {
-        postUser(person).then(() => {
-            setCharacters([...characters, person]);
+        postUser(person).then((res) => {
+            if (res.status === 201)
+                setCharacters([...characters, person]);
         }).catch((err) => console.log(err))
     }
 
@@ -53,7 +56,17 @@ function MyApp() {
         })
 
         return promise
+    }
+    async function deleteUser(person) {
+        const promise = await fetch("http://localhost:8000/users", {
+            method: "DELETE",
+            body: JSON.stringify(person),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
 
+        return promise
     }
 
 
