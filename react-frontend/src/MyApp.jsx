@@ -3,8 +3,12 @@ import Table from './Table';
 import Form from './Form';
 
 
+const port = 8001
 
 function MyApp() {
+
+
+
     const [characters, setCharacters] = useState([]);
 
     useEffect(() => {
@@ -23,6 +27,9 @@ function MyApp() {
     }
 
     function updateList(person) {
+        if(person.job.length < 3){
+            throw new Error("Job must have more than 2 letters")
+        }
         postUser(person).then((res) => {
             if (res.status === 201) {
                 res.json().then((json) =>{
@@ -46,12 +53,12 @@ function MyApp() {
 
 
     async function fetchUsers() {
-        const promise = await fetch("http://localhost:8000/users")
+        const promise = await fetch(`http://localhost:${port}/users`)
         return promise
     }
 
     async function postUser(person) {
-        const promise = await fetch("http://localhost:8000/users", {
+        const promise = await fetch(`http://localhost:${port}/users`, {
             method: "POST",
             body: JSON.stringify(person),
             headers: {
@@ -62,7 +69,7 @@ function MyApp() {
         return promise
     }
     async function deleteUser(person) {
-        const promise = await fetch("http://localhost:8000/users/" + person["id"], {
+        const promise = await fetch(`http://localhost:${port}/users/` + person["_id"], {
             method: "DELETE",
             body: JSON.stringify(person),
             headers: {
