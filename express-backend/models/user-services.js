@@ -12,7 +12,6 @@ mongoose.connect('mongodb://localhost:27017/users', {
 async function getUsers(name,job) {
     let promise;
     if (name === undefined && job === undefined) {
-        console.log("Searching")
         promise = await userModel.find()
     } else if (name && !job) {
         promise = await findUserByName(name)

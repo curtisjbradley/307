@@ -28,7 +28,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", (req, res) => {
-    console.log("Requesting users");
     userServices.getUsers(req.query.name, req.query.job).then((users) => {
         res.status(200).send({users_list: users});
     }).catch((err) => {
